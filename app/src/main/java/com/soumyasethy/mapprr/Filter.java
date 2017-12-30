@@ -21,6 +21,7 @@ public class Filter extends AAH_FabulousFragment {
 
   public static Filter newInstance(String curr_sort, String curr_order) {
     sort = curr_sort;
+
     order = curr_order;
     Filter f = new Filter();
     return f;
