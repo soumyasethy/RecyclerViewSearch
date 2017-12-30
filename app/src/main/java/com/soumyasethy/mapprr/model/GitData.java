@@ -1,13 +1,14 @@
 
 package com.soumyasethy.mapprr.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GitData {
+public class GitData implements Serializable {
 
   private Integer totalCount;
   private Boolean incompleteResults;
-  private List<Item> items = null;
+  private List<Repository> items;
 
   public Integer getTotalCount() {
     return totalCount;
@@ -25,12 +26,12 @@ public class GitData {
     this.incompleteResults = incompleteResults;
   }
 
-  public List<Item> getItems() {
+  public List<Repository> getRepositories() {
     return items;
   }
 
-  public void setItems(List<Item> items) {
-    this.items = items;
+  public void setRepositories(List<Repository> repositories) {
+    this.items = repositories;
   }
 
 }

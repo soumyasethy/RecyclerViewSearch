@@ -2,7 +2,9 @@
 package com.soumyasethy.mapprr.model;
 
 
-public class Owner {
+import java.io.Serializable;
+
+public class Owner implements Serializable {
 
   private String login;
   private Integer id;

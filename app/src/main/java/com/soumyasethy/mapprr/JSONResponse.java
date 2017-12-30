@@ -1,11 +1,11 @@
 package com.soumyasethy.mapprr;
 
-import com.soumyasethy.mapprr.model.Item;
+import com.soumyasethy.mapprr.model.Repository;
 
 public class JSONResponse {
-  private Item[] items;
+  private Repository[] items;
 
-  public Item[] getItems() {
+  public Repository[] getItems() {
     return items;
   }
 }

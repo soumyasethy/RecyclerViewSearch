@@ -1,4 +1,4 @@
-package com.soumyasethy.mapprr;
+package com.soumyasethy.mapprr.views;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,7 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.soumyasethy.mapprr.model.Item;
+import com.soumyasethy.mapprr.R;
+import com.soumyasethy.mapprr.model.Repository;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,7 +19,7 @@ public class RepositoryHolder extends RecyclerView.ViewHolder {
 
   private TextView tv_name, full_name, tv_api_level, fork, star, watcher;
   private ImageView avatar;
-  private Item item;
+  private Repository repository;
 
   public RepositoryHolder(View view) {
     super(view);
@@ -32,33 +33,34 @@ public class RepositoryHolder extends RecyclerView.ViewHolder {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(view.getContext(), item.getFullName(), 1000).show();
+        Toast.makeText(view.getContext(), repository.getFullName(), Toast.LENGTH_SHORT).show();
+        RepositoryActivity.launch(view.getContext(),repository);
       }
     });
 
   }
 
-  public void update(Item item) {
+  public void update(Repository repository) {
 
-    if (item == null) {
+    if (repository == null) {
       return;
     } else {
-      this.item = item;
+      this.repository = repository;
     }
 
-    String url = item.getOwner().getAvatarUrl();
+    String url = repository.getOwner().getAvatarUrl();
     System.out.println(url);
     Picasso.with(itemView.getContext())
-        .load(item.getOwner().getAvatarUrl())
+        .load(repository.getOwner().getAvatarUrl())
         .placeholder(R.drawable.github)
         .error(R.drawable.github)
         .into(avatar);
-    tv_name.setText(item.getName());
-    full_name.setText(item.getFullName());
-    tv_api_level.setText(item.getLanguage());
-    watcher.setText(String.valueOf(item.getWatchers()));
-    fork.setText(String.valueOf(item.getForks()));
-    star.setText(String.valueOf(item.getWatchers()));
+    tv_name.setText(repository.getName());
+    full_name.setText(repository.getFullName());
+    tv_api_level.setText(repository.getLanguage());
+    watcher.setText(String.valueOf(repository.getWatchers()));
+    fork.setText(String.valueOf(repository.getForks()));
+    star.setText(String.valueOf(repository.getWatchers()));
 
   }
 }

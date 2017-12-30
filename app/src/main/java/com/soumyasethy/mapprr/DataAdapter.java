@@ -5,17 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.soumyasethy.mapprr.model.Item;
+import com.soumyasethy.mapprr.model.Repository;
+import com.soumyasethy.mapprr.views.RepositoryHolder;
 
 import java.util.ArrayList;
 
 public class DataAdapter
     extends RecyclerView.Adapter<RecyclerView.ViewHolder> //implements Filterable {
 {
-  private ArrayList<Item> mArrayList;
-  private ArrayList<Item> mFilteredList;
+  private ArrayList<Repository> mArrayList;
+  private ArrayList<Repository> mFilteredList;
 
-  public DataAdapter(ArrayList<Item> arrayList) {
+  public DataAdapter(ArrayList<Repository> arrayList) {
     mArrayList = arrayList;
     mFilteredList = arrayList;
   }
@@ -54,9 +55,9 @@ public class DataAdapter
 //                    mFilteredList = mArrayList;
 //                } else {
 //
-//                    ArrayList<Item> filteredList = new ArrayList<>();
+//                    ArrayList<Repository> filteredList = new ArrayList<>();
 //
-//                    for (Item androidVersion : mArrayList) {
+//                    for (Repository androidVersion : mArrayList) {
 //
 //                        if (androidVersion.getName().toLowerCase().contains(charString) || androidVersion.getDescription().toLowerCase().contains(charString)) {
 //
@@ -74,7 +75,7 @@ public class DataAdapter
 //
 //            @Override
 //            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//                mFilteredList = (ArrayList<Item>) filterResults.values;
+//                mFilteredList = (ArrayList<Repository>) filterResults.values;
 //                notifyDataSetChanged();
 //            }
 //        };

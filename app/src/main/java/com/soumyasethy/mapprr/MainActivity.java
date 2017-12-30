@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
-import com.soumyasethy.mapprr.model.Item;
+import com.soumyasethy.mapprr.model.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
   public RecyclerView mRecyclerView;
   FloatingActionButton fab;
   String user = "", sort = "stars", order = "desc";
-  private ArrayList<Item> mArrayList;
+  private ArrayList<Repository> mArrayList;
   private DataAdapter mAdapter;
 
   @Override
