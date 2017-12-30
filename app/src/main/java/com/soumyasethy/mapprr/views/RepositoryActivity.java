@@ -8,16 +8,27 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.soumyasethy.mapprr.R;
+import com.soumyasethy.mapprr.Webview;
 import com.soumyasethy.mapprr.model.Repository;
+import com.squareup.picasso.Picasso;
 
 public class RepositoryActivity extends AppCompatActivity {
 
   private static final String REPO = "repo";
+    private static final String WEB_URL = "web_url";
+    TextView projectLink, description;
+    ImageView avatar;
   private Repository repo;
 
-
+    public static void launch(Context context, Repository repository) {
+        Intent i = new Intent(context, RepositoryActivity.class);
+        i.putExtra(REPO, repository);
+        context.startActivity(i);
+    }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +36,6 @@ public class RepositoryActivity extends AppCompatActivity {
     setContentView(R.layout.activity_repository);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
     initViews();
 
     Bundle extras = getIntent().getExtras();
@@ -37,7 +47,7 @@ public class RepositoryActivity extends AppCompatActivity {
     repo = (Repository) extras.getSerializable(REPO);
 
     setRepositories(repo);
-    Toast.makeText(this, "Found "+repo, Toast.LENGTH_LONG).show();
+      //Toast.makeText(this, "Found "+repo, Toast.LENGTH_LONG).show();
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -51,15 +61,34 @@ public class RepositoryActivity extends AppCompatActivity {
 
   private void initViews() {
     //
+      projectLink = (TextView) findViewById(R.id.projectLink);
+
+      description = (TextView) findViewById(R.id.descriptionLink);
+      avatar = (ImageView) findViewById(R.id.avatar);
   }
 
-  public static void launch(Context context, Repository repository) {
-    Intent i  = new Intent(context,RepositoryActivity.class);
-    i.putExtra(REPO, repository);
-    context.startActivity(i);
-  }
+    public void setRepositories(final Repository repository) {
+        getSupportActionBar().setTitle(repository.getName());
+        projectLink.setText(repository.getHtmlUrl());
+        projectLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), Webview.class);
+                Bundle b = new Bundle();
+                b.putString(WEB_URL, repository.getHtmlUrl());
+                i.putExtras(b);
+                startActivity(i);
 
-  public void setRepositories(Repository repository) {
-    //
+
+            }
+        });
+
+        description.setText(repository.getDescription());
+        Picasso.with(avatar.getContext())
+                .load(repository.getOwner().getAvatarUrl())
+                .transform(new CircleTransform())
+                .placeholder(R.drawable.github)
+                .error(R.drawable.github)
+                .into(avatar);
   }
 }

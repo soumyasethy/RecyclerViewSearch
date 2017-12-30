@@ -10,7 +10,7 @@ public class Repository implements Serializable {
   private String full_name;
   private Owner owner;
   private Boolean _private;
-  private String htmlUrl;
+  private String html_url;
   private String description;
   private Boolean fork;
   private String url;
@@ -119,11 +119,11 @@ public class Repository implements Serializable {
   }
 
   public String getHtmlUrl() {
-    return htmlUrl;
+    return html_url;
   }
 
-  public void setHtmlUrl(String htmlUrl) {
-    this.htmlUrl = htmlUrl;
+  public void setHtmlUrl(String html_url) {
+    this.html_url = html_url;
   }
 
   public String getDescription() {
@@ -663,7 +663,7 @@ public class Repository implements Serializable {
             ", full_name='" + full_name + '\'' +
             ", owner=" + owner +
             ", _private=" + _private +
-            ", htmlUrl='" + htmlUrl + '\'' +
+            ", html_url='" + html_url + '\'' +
             ", description='" + description + '\'' +
             ", fork=" + fork +
             ", url='" + url + '\'' +
