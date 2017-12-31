@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
-import com.soumyasethy.mapprr.model.Repository;
+import com.soumyasethy.mapprr.model.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

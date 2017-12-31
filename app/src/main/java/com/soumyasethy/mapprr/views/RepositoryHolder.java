@@ -4,10 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.soumyasethy.mapprr.R;
-import com.soumyasethy.mapprr.model.Repository;
+import com.soumyasethy.mapprr.model.repository.Repository;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -33,7 +32,7 @@ public class RepositoryHolder extends RecyclerView.ViewHolder {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(view.getContext(), repository.getFullName(), Toast.LENGTH_SHORT).show();
+          //Toast.makeText(view.getContext(), repository.getFullName(), Toast.LENGTH_SHORT).show();
         RepositoryActivity.launch(view.getContext(),repository);
       }
     });
@@ -52,6 +51,7 @@ public class RepositoryHolder extends RecyclerView.ViewHolder {
     System.out.println(url);
     Picasso.with(itemView.getContext())
         .load(repository.getOwner().getAvatarUrl())
+            .transform(new CircleTransform())
         .placeholder(R.drawable.github)
         .error(R.drawable.github)
         .into(avatar);

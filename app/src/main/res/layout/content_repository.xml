@@ -47,7 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="web"
-                    android:text="link" />
+                    android:text="link"
+                    android:textColor="@color/blue" />
 
 
             </LinearLayout>
@@ -118,10 +119,19 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/gray" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="link" />
+                <GridView
+                    android:id="@+id/grid_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:columnWidth="90dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="10dp"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="10dp"
+                    tools:listitem="@layout/contributers_item">
+
+                </GridView>
 
 
             </LinearLayout>

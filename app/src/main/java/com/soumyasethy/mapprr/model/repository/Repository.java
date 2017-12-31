@@ -1,5 +1,5 @@
 
-package com.soumyasethy.mapprr.model;
+package com.soumyasethy.mapprr.model.repository;
 
 
 import java.io.Serializable;
