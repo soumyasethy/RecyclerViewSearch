@@ -31,8 +31,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.soumyasethy.mapprr.MainActivity.BASE_URL;
-
 public class RepositoryActivity extends AppCompatActivity {
 
   private static final String REPO = "repo";
@@ -112,17 +110,17 @@ public class RepositoryActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("https://api.github.com/repos/soumya4017/SoumyaSethy/")//repository.getContributorsUrl()+"/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<JSONResponse> call = request.getContributors(repository.getContributorsUrl());
+        Call<JSONResponse> call = request.getContributors();
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                 JSONResponse jsonResponse = response.body();
-                ArrayList<Contributer> contrubterList = new ArrayList<>(Arrays.asList(jsonResponse.getContributer()));
-                mAdapter = new ContrbuterAdapter(contrubterList, avatar.getContext());
+                ArrayList<Contributer> contributorsList = new ArrayList<>(Arrays.asList(jsonResponse.getContributer()));
+                mAdapter = new ContrbuterAdapter(contributorsList, avatar.getContext());
                 contribute.setAdapter(mAdapter);
             }
 
@@ -145,4 +143,5 @@ public class RepositoryActivity extends AppCompatActivity {
             }
         });
   }
+
 }

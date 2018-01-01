@@ -31,7 +31,7 @@ public class Repository implements Serializable {
   private String statusesUrl;
   private String languagesUrl;
   private String stargazersUrl;
-  private String contributorsUrl;
+  private String contributors_url;
   private String subscribersUrl;
   private String subscriptionUrl;
   private String commitsUrl;
@@ -287,11 +287,11 @@ public class Repository implements Serializable {
   }
 
   public String getContributorsUrl() {
-    return contributorsUrl;
+    return contributors_url;
   }
 
-  public void setContributorsUrl(String contributorsUrl) {
-    this.contributorsUrl = contributorsUrl;
+  public void setContributorsUrl(String contributors_url) {
+    this.contributors_url = contributors_url;
   }
 
   public String getSubscribersUrl() {
@@ -684,7 +684,7 @@ public class Repository implements Serializable {
             ", statusesUrl='" + statusesUrl + '\'' +
             ", languagesUrl='" + languagesUrl + '\'' +
             ", stargazersUrl='" + stargazersUrl + '\'' +
-            ", contributorsUrl='" + contributorsUrl + '\'' +
+            ", contributors_url='" + contributors_url + '\'' +
             ", subscribersUrl='" + subscribersUrl + '\'' +
             ", subscriptionUrl='" + subscriptionUrl + '\'' +
             ", commitsUrl='" + commitsUrl + '\'' +
