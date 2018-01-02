@@ -11,7 +11,7 @@ import com.soumyasethy.mapprr.views.RepositoryHolder;
 import java.util.ArrayList;
 
 public class DataAdapter
-    extends RecyclerView.Adapter<RecyclerView.ViewHolder> //implements Filterable {
+        extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
   private ArrayList<Repository> mFilteredList;
 

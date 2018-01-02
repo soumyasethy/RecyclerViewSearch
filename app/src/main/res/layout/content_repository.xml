@@ -119,19 +119,15 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/gray" />
 
-                <GridView
-                    android:id="@+id/grid_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:columnWidth="90dp"
-                    android:gravity="center"
-                    android:horizontalSpacing="10dp"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/card_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:numColumns="auto_fit"
+                    android:scrollbars="vertical"
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="10dp"
-                    tools:listitem="@layout/contributers_item">
-
-                </GridView>
+                    tools:listitem="@layout/contributers_item" />
 
 
             </LinearLayout>

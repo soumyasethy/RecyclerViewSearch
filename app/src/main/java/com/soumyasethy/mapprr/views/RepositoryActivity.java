@@ -6,14 +6,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.soumyasethy.mapprr.ContributorDataAdapter;
 import com.soumyasethy.mapprr.JSONResponse;
 import com.soumyasethy.mapprr.R;
 import com.soumyasethy.mapprr.RequestInterface;
@@ -37,9 +38,9 @@ public class RepositoryActivity extends AppCompatActivity {
     private static final String WEB_URL = "web_url";
     TextView projectLink, description;
     ImageView avatar;
-    GridView contribute;
+    RecyclerView contribute;
     private Repository repo;
-    private ContrbuterAdapter mAdapter;
+    private ContributorDataAdapter mAdapter;
 
     public static void launch(Context context, Repository repository) {
         Intent i = new Intent(context, RepositoryActivity.class);
@@ -81,7 +82,11 @@ public class RepositoryActivity extends AppCompatActivity {
       projectLink = (TextView) findViewById(R.id.projectLink);
       description = (TextView) findViewById(R.id.descriptionLink);
       avatar = (ImageView) findViewById(R.id.avatar);
-      contribute = (GridView) findViewById(R.id.grid_view);
+      contribute = (RecyclerView) findViewById(R.id.card_recycler_view);
+      contribute.setHasFixedSize(true);
+      RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
+      contribute.setLayoutManager(layoutManager);
+
   }
 
     public void setRepositories(final Repository repository) {
@@ -120,7 +125,7 @@ public class RepositoryActivity extends AppCompatActivity {
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                 JSONResponse jsonResponse = response.body();
                 ArrayList<Contributer> contributorsList = new ArrayList<>(Arrays.asList(jsonResponse.getContributer()));
-                mAdapter = new ContrbuterAdapter(contributorsList, avatar.getContext());
+                mAdapter = new ContributorDataAdapter(contributorsList);
                 contribute.setAdapter(mAdapter);
             }
 
@@ -130,18 +135,7 @@ public class RepositoryActivity extends AppCompatActivity {
             }
         });
 
-        contribute.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
 
-                // Sending image id to FullScreenActivity
-                // Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
-                // passing array index
-                // i.putExtra("id", position);
-                //  startActivity(i);
-            }
-        });
   }
 
 }
