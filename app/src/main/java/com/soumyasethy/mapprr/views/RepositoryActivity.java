@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.soumyasethy.mapprr.ContributorDataAdapter;
-import com.soumyasethy.mapprr.JSONResponse;
 import com.soumyasethy.mapprr.R;
 import com.soumyasethy.mapprr.RequestInterface;
 import com.soumyasethy.mapprr.Webview;
@@ -24,7 +23,6 @@ import com.soumyasethy.mapprr.model.repository.Repository;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,20 +117,19 @@ public class RepositoryActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<JSONResponse> call = request.getContributors();
-        call.enqueue(new Callback<JSONResponse>() {
-            @Override
-            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                JSONResponse jsonResponse = response.body();
-                ArrayList<Contributer> contributorsList = new ArrayList<>(Arrays.asList(jsonResponse.getContributer()));
-                mAdapter = new ContributorDataAdapter(contributorsList);
-                contribute.setAdapter(mAdapter);
-            }
+        Call<ArrayList<Contributer>> call = request.getContributors();
+        call.enqueue(new Callback<ArrayList<Contributer>>() {
+          @Override
+          public void onResponse(Call<ArrayList<Contributer>> call,
+                                 Response<ArrayList<Contributer>> response) {
+            mAdapter = new ContributorDataAdapter(response.body());
+            contribute.setAdapter(mAdapter);
+          }
 
-            @Override
-            public void onFailure(Call<JSONResponse> call, Throwable t) {
-                Log.d("Error", t.getMessage());
-            }
+          @Override
+          public void onFailure(Call<ArrayList<Contributer>> call, Throwable t) {
+            Log.d("Error", t.getMessage());
+          }
         });
 
 

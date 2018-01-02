@@ -1,5 +1,9 @@
 package com.soumyasethy.mapprr;
 
+import com.soumyasethy.mapprr.model.contributers.Contributer;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,6 +18,6 @@ public interface RequestInterface {
                                @Query("order") String order);
 
     @GET("contributors")
-    Call<JSONResponse> getContributors();
+    Call<ArrayList<Contributer>> getContributors();
 
 }
