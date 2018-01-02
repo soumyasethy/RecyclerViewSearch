@@ -24,7 +24,7 @@ public class ContributorsHolder extends RecyclerView.ViewHolder {
     public ContributorsHolder(View view) {
         super(view);
 
-        ImageView contributer_avatar = (ImageView) view.findViewById(R.id.contributer_avatar);
+        contributer_avatar = (ImageView) view.findViewById(R.id.contributer_avatar);
         contributer_name = (TextView) view.findViewById(R.id.contributer_name);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
